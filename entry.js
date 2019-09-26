@@ -1,30 +1,30 @@
 const util = require("./lib/util.js"); // Require util from lib for helper functions.
-const repl = require('repl');
+const repl = require('repl'); // REPL is used to have node.js input.
 const chalk = require("chalk"); // Require chalk for console markup.
 // Helper function loader
 global["log"] = util.env["log"]; // Define the global logger for other uses.
 
-for (var f in util.env) {
-    global[f] = util.env[f];
+for (var f in util.env) { // Loop through everything in the env object.
+    global[f] = util.env[f]; // Define the env in the global object.
     log("info", `Loaded env function '${f}'`);
 }
 
-for (var d in util.data) {
-    global[d] = util.data[d];
+for (var d in util.data) { // Loop through everything in the data object.
+    global[d] = util.data[d]; // Define the data in the global object.
     log("info", `Loaded global '${d}'`);
 }
 
-for (var d in util.run) {
-    util.run[d]();
+for (var d in util.run) { // Loop through everything in the run object.
+    util.run[d](); // Run the function for preload.
     log("info", `Ran function '${d}'`);
 }
-// End of helper function loader
-var entry = async () => { // Entry function for startup
+// End of helper function loader.
+var entry = async () => { // Entry function for startup.
     var settings = await load("settings.json"); // Load settings file.
 
     var data = await load("data.json") // Load all data for guild.
     var bot = client(); // Setup client for bot.
-    await think();
+    await think(); // Setup the thinker timeout.
     thinkAdd("data_think", async () => {
         if (typeof onLoad == "function") { // Check if onLoad is a function
             var ret = onLoad(data, settings); // Get return value of onLoad(data, settings)
@@ -131,6 +131,7 @@ var entry = async () => { // Entry function for startup
             }
         }
     });
+
     on("message", (message) => { // Message event to run everytime the bot intercepts a message.
         if (message.author.bot) return; // Do nothing if message author is a bot.
         if (message.dm) return embedReply(message, "error", ":x: You cannot send commands in a DM."); // If message is a DM do not respond.
@@ -144,12 +145,12 @@ var entry = async () => { // Entry function for startup
         var cmd = d.command; // Setup command string from data.
         var args = d.args; // Setup arguments array from data.
         if (cmd) { // if the command is there continue.
-            var cmds = getCmds(); // Get all the registered commands
+            var cmds = getCmds(); // Get all the registered commands.
 
             if (cmds[cmd]) { // Check if the command entered is a valid one.
                 var canRun = canUserRunCommand(message.member, cmds[cmd]); // Check if the user has permission to run the command if neccessary.
                 if (canRun) { // if they can run the command
-                    message.delete();
+                    message.delete(); // Delete their message so it doesn't show in the channel sent.
                     try { // Use a try to run the code without exiting if an error is occured.
                         log("misc", `${chalk.bgBlack.whiteBright(message.author.username + "#" + message.author.discriminator)} (${chalk.bgBlack.whiteBright(message.author.id)}) ran command ${chalk.bgBlack.cyanBright(cmd)} with arguments: ${chalk.bgBlack.blueBright((args.join(" ") !== "" ? args.join(" ") : "none"))}`); // Log in console the command that was ran.
                         cmds[cmd].run(bot, message, args, message.guild).catch(err => {
@@ -166,6 +167,8 @@ var entry = async () => { // Entry function for startup
             }
         }
     })
+
+    log("info", "Logging into bot with token.");
 
     await login(settings.token); // Login to the bot with our token.
     setTimeout(

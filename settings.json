@@ -1,20 +1,20 @@
 {
-  "token": "NTc3MzQ2OTQ1NzgyMjUxNTMw.XSa9PQ.OmAiaQTRMXP1BWnrBJSJZQOxXfA",
+  "token": "NjIzOTY4Nzc0NzE0MDMyMTU1.XY0UDA.kpRhrtVeAjTFiSAJIGlpcma-xPI",
   "comment": "This is the token used for the bot.",
   "prefix": "?",
   "comment": "This is the prefix the bot should use.",
   "mod_log": "mod-log",
   "comment": "The channel for all moderator actions to go to.",
-  "mute_role": "Gimp",
+  "mute_role": "Muted",
   "comment": "The role for the bot to apply when muting a user",
   "roles": {
-    "support": "Support Team",
-    "mod": "Factory Workers [Mod]",
-    "admin": "Employee Of The Month [Admin]",
-    "superadmin": "Tea Council [SuperAdmin]",
-    "owner": "Exiled Helper"
+    "support": "Support",
+    "mod": "Mod",
+    "admin": "Admin",
+    "superadmin": "SuperAdmin",
+    "owner": "Owner"
   },
   "comment": "The roles for the bot to use and commands.",
-  "server_name": "Arizona KKK RP",
+  "server_name": "Mythical Roleplay",
   "comment": "The name of the server to use in replies."
 }

@@ -3,7 +3,7 @@ var cmd = {}
 cmd.name = "ban";
 cmd.role = "admin";
 cmd.group = "Moderation";
-cmd.use = "ban [@user] [duration] [(optional) reason]";
+cmd.use = "ban [@user] [duration (1h, 1m, 1s)] [(optional) reason]";
 cmd.desc = "Ban a user from the guild for a duration with a reason if specified.";
 
 cmd.run = async (bot, msg, args, guild) => {
@@ -13,13 +13,13 @@ cmd.run = async (bot, msg, args, guild) => {
 
     var who = msg.mentions.members.first();
     if (who) {
-        args[0] = "";
+        delete args[0];
     }
 
     var myPower = getUserPowerLevel(msg.member);
     var theirPower = getUserPowerLevel(who);
 
-    if (theirPower > myPower) {
+    if (theirPower >= myPower) {
         return embedReply(msg, "error", ":x: You cannot target this person.").then(m => m.delete(2500));
     }
 
@@ -33,10 +33,12 @@ cmd.run = async (bot, msg, args, guild) => {
     var str = "";
 
     if (milliseconds) {
-        args[1] = "";
+        delete args[1];
         secs = milliseconds / 1000;
         str = ms(milliseconds, { long: true });
     }
+
+    args = cleanArray(args);
 
     if (milliseconds < 0) {
         return embedReply(msg, "error", ":x: The ban duration can not be a negative value.").then(m => m.delete(2500));
@@ -57,7 +59,7 @@ cmd.run = async (bot, msg, args, guild) => {
     }
     if (secs > 0) {
         var ret = await addBan(msg.guild.id, who.id, (Date.now() + milliseconds), msg.who, reason).catch(e => {
-            return log("error", `Failed to ban user ${msg.author.id}, reason: ${e}`);
+            return log("error", `Failed to ban user ${who.id}, reason: ${e}`);
         });
     }
     await who.ban({ days: 7, reason: reason });

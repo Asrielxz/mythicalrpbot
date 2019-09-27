@@ -111,7 +111,7 @@ var entry = async () => { // Entry function for startup.
                             ue = embed();
                             ue.setTitle("User Unbanned");
                             ue.setColor(0x42f45f);
-                            ue.addField("Who", `<@${member.id}>`, true);
+                            ue.addField("Who", `<@${user}>`, true);
                             ue.addField("By", `<@${bot.user.id}>`, true);
                             ue.addField("Ban Reason", `\`\`${why}\`\``, true);
                             ue.addField("Reason", `\`\`[AUTO] Ban expired.\`\``, true);

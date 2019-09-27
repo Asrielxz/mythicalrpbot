@@ -13,13 +13,13 @@ cmd.run = async (bot, msg, args, guild) => {
 
     var who = msg.mentions.members.first();
     if (who) {
-        args[0] = "";
+        delete args[0];
     }
 
     var myPower = getUserPowerLevel(msg.member);
     var theirPower = getUserPowerLevel(who);
 
-    if (theirPower > myPower) {
+    if (theirPower >= myPower) {
         return embedReply(msg, "error", ":x: You cannot target this person.").then(m => m.delete(2500));
     }
 
@@ -34,7 +34,7 @@ cmd.run = async (bot, msg, args, guild) => {
     // data.mutes[who.id] = 0{ guild: msg.guild.id, time: Date.now() + (secs * 1000), by: msg.who, reason: reason };
     // save("data.json", data);
     var ret = await removeMute(who.id).catch(e => {
-        return log("error", `Failed to unmute user ${msg.author.id}, reason: ${e}`);
+        return log("error", `Failed to unmute user ${who.id}, reason: ${e}`);
     });
     var e = embed();
     e.setTitle("User Unmuted");

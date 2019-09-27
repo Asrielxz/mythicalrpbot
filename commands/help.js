@@ -43,7 +43,7 @@ cmd.run = async (bot, msg, args, guild) => {
         rep = "";
         for (cmd of help[cat]) {
             if (cmd.name && cmd.use && cmd.desc && cmd.group) {
-                rep += `**${cmd.name}**\n`;
+                rep += `**${cmd.name}** *${cmd.role}*\n`;
                 rep += `${cmd.desc}\n`;
                 rep += `\`\`${msg.settings.prefix}${cmd.use}\`\`\n`
             }
@@ -51,8 +51,6 @@ cmd.run = async (bot, msg, args, guild) => {
         e.addField(cat, rep);
     }
     msg.channel.send(e).then(m => m.delete(20000));
-
-    console.log(attemptPaginate(e));
 }
 
 module.exports = cmd;

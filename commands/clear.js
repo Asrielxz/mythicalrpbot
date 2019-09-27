@@ -3,7 +3,7 @@ var cmd = {}
 cmd.name = "clear";
 cmd.role = "mod";
 cmd.group = "Moderation";
-cmd.use = "clear [amount [min: 1, max: 100]] [(optional) @user]";
+cmd.use = "clear [amount (min: 1, max: 100)] [(optional) @user]";
 cmd.desc = "Clear a certain amount of (a users) messages from a channel.";
 
 cmd.run = async (bot, msg, args, guild) => {

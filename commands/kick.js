@@ -13,7 +13,16 @@ cmd.run = async (bot, msg, args, guild) => {
 
     var who = msg.mentions.members.first();
     if (who) {
-        args[0] = "";
+        delete args[0];
+    }
+
+    args = cleanArray(args);
+
+    var myPower = getUserPowerLevel(msg.member);
+    var theirPower = getUserPowerLevel(who);
+
+    if (theirPower >= myPower) {
+        return embedReply(msg, "error", ":x: You cannot target this person.").then(m => m.delete(2500));
     }
 
     var reason = args.join(" ");

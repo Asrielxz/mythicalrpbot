@@ -3,18 +3,33 @@ var cmd = {}
 cmd.name = "announce";
 cmd.role = "admin";
 cmd.group = "Utility";
-cmd.use = "announce [message]";
+cmd.use = "announce [title] [message]";
 cmd.desc = "Makes an annoucement with the bot.";
 
 cmd.run = async (bot, msg, args, guild) => {
+    var title = args[0];
+
+    if (!title) {
+        title = "Server Annoucement";
+    } else {
+        delete args[0];
+        args = cleanArray(args);
+    }
+
     var str = args.join(" ");
 
     if (!str || str == "" || str == " ") {
         return embedReply(msg, "error", `:x: You can not make a blank annoucement.`).then(m => m.delete(4000));
     }
 
+    if (!title || title == "" || title == " ") {
+        title = "Server Annoucement";
+    }
+
+    title = title.replace("-", " ");
+
     var e = embed();
-    e.setTitle("Server Annoucement");
+    e.setTitle(title);
     e.setColor(0xb342f5);
     e.setDescription(str);
     msg.channel.send(e);

@@ -132,19 +132,67 @@ var entry = async () => { // Entry function for startup.
         }
     });
 
+    thinkAdd("status_think", async () => {
+        for (var srv in data.session) {
+            var dat = data.session[srv];
+
+            if (dat.status && dat.status.channelID && dat.status.messageID) {
+                var guild = bot.guilds.find(g => g.id == srv);
+
+                if (guild) {
+                    if (!dat.status.cooldown) {
+                        dat.status.cooldown = 60;
+                        saveData();
+                    }
+                    dat.status.cooldown--;
+                    saveData();
+                    if (dat.status.cooldown <= 0) {
+                        dat.status.cooldown = undefined;
+                        var chan = guild.channels.find(c => c.id == dat.status.channelID);
+
+                        if (chan) {
+                            fetchMessageDetour(chan, dat.status.messageID, async (m) => {
+                                var fake = {
+                                    session: dat
+                                }
+
+                                var embed = await embedServerList(fake);
+
+                                if (m) {
+                                    m.edit(embed);
+                                } else {
+                                    chan.send(embed).then(m => {
+                                        dat.status.messageID = m.id;
+                                        saveData();
+                                    })
+                                }
+                            });
+                        } else {
+                            delete data.session[srv];
+                            data.session = cleanArray(data.session);
+                            saveData();
+                            log("error", "Could not find channel for status thinker. " + guild.name);
+                        }
+                    }
+                }
+            }
+        }
+    });
+
     on("message", (message) => { // Message event to run everytime the bot intercepts a message.
         if (message.author.bot) return; // Do nothing if message author is a bot.
-        if (message.dm) return embedReply(message, "error", ":x: You cannot send commands in a DM."); // If message is a DM do not respond.
-        data.session[message.guild.id] = data.session[message.guild.id] || {}; // Setup session guild.
-        message.data = data; // Setup reference to data for message.
-        message.settings = settings; // Setup reference to settings for message.
-        message.session = data.session[message.guild.id]; // Setup reference to session data for message.
-        message.bot = bot; // Setup reference to bot for message.
-        message.who = message.author.id; // Setup reference to author id for message.
         var d = parseString(message.content); // Parse the command and arguments for the message if it has any.
         var cmd = d.command; // Setup command string from data.
         var args = d.args; // Setup arguments array from data.
         if (cmd) { // if the command is there continue.
+            if (!message.guild || message.dm) return embedReply(message, "error", ":x: You cannot send commands in a DM.");
+            data.session[message.guild.id] = data.session[message.guild.id] || {}; // Setup session guild.
+            message.data = data; // Setup reference to data for message.
+            message.settings = settings; // Setup reference to settings for message.
+            message.session = data.session[message.guild.id]; // Setup reference to session data for message.
+            message.bot = bot; // Setup reference to bot for message.
+            message.who = message.author.id; // Setup reference to author id for message.
+
             var cmds = getCmds(); // Get all the registered commands.
 
             if (cmds[cmd]) { // Check if the command entered is a valid one.
@@ -173,14 +221,14 @@ var entry = async () => { // Entry function for startup.
     await login(settings.token); // Login to the bot with our token.
     setTimeout(
         () => {
-        repl.start({
-            prompt: 'eval>',
-            eval: function(cmd, context, filename, callback) {
-                var ret = eval(cmd);
-                callback(ret);
-            }
-        })
-    }, 1000);
+            repl.start({
+                prompt: 'eval>',
+                eval: function(cmd, context, filename, callback) {
+                    var ret = eval(cmd);
+                    callback(ret);
+                }
+            })
+        }, 1000);
 }
 
 entry(); // Begin the entry function.

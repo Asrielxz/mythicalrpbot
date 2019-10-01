@@ -1,10 +1,12 @@
 {
-  "token": "NjIzOTY4Nzc0NzE0MDMyMTU1.XY0UDA.kpRhrtVeAjTFiSAJIGlpcma-xPI",
+  "token": "NjIzOTY4Nzc0NzE0MDMyMTU1.XY4XAQ.UXqfzfw39SUK7dvp4zeakBCucXw",
   "comment": "This is the token used for the bot.",
   "prefix": "?",
   "comment": "This is the prefix the bot should use.",
   "mod_log": "mod-log",
   "comment": "The channel for all moderator actions to go to.",
+  "ticket_category": "support-tickets",
+  "comment": "The channel name for the support tickets to go in.",
   "mute_role": "Muted",
   "comment": "The role for the bot to apply when muting a user",
   "roles": {

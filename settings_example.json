@@ -1,5 +1,5 @@
 {
-  "token": "NjIzOTY4Nzc0NzE0MDMyMTU1.XZar7g.U7kLWveFwlqzTviqyQuUQyfatfY",
+  "token": "client_token",
   "comment": "This is the token used for the bot.",
   "prefix": "?",
   "comment": "This is the prefix the bot should use.",

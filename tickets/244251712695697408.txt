@@ -75,3 +75,35 @@
 @Asriel#0284: ?eval msg.channel.send('cow'); undefined
 @Asriel#0284: ?eval msg.channel.send('cow'); undefined
 @Asriel#0284: ?eval msg.channel.send('cow'); undefined
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm
+@Asriel#0284: ?setuprules hi
+no rdm

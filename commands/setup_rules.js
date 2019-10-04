@@ -45,26 +45,7 @@ cmd.run = async (bot, msg, args, guild) => {
     msg.channel.send(embed).then(mc => {
         msg.session.rules.messageID = mc.id;
         saveData();
-    })
-
-    // var str = "";
-
-    // for (var srv in msg.session.servers) {
-    //     var r = msg.session.servers[srv];
-
-    //     if (str !== "") {
-    //         str += "\n";
-    //     }
-
-    //     str += "**" + r + "**\n" + "``" + srv + "``";
-    // }
-
-    // if (str == "") {
-    //     str = "No servers available.";
-    // }
-
-    // embedReply(msg, "info", str).then(m=>m.delete(25000));
-    // saveData();
+    });
 }
 
 module.exports = cmd;

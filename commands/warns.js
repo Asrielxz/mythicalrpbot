@@ -60,6 +60,7 @@ cmd.run = async (bot, msg, args, guild) => {
             return embedReply(msg, "error", ":x: You have no warnings.");
         } else {
             for (var i = 0; i < warns.length; i++) {
+                if (dobreak) break;
                 var e = embed();
                 e.setColor(0xf45042);
                 e.setTitle("Your Warnings");

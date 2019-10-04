@@ -1,0 +1,77 @@
+"--Beginning Of Chat Log For: ticket-0001--"
+@Asriel#0284: ?add
+@Asriel#0284: ?add
+@Asriel#0284: ?add
+@Asriel#0284: ?add
+@Asriel#0284: ?add
+@Asriel#0284: ?add
+@Asriel#0284: ?add
+@Asriel#0284: ?add <@356438792669888513>
+@Asriel#0284: ?add <@356438792669888513>
+@Asriel#0284: ?add <@356438792669888513> die
+@Asriel#0284: ?add <@356438792669888513>
+@Asriel#0284: ?add
+@Asriel#0284: d
+@Asriel#0284: ?help
+@Asriel#0284: ?add <@356438792669888513>
+@Asriel#0284: ?add <@356438792669888513> die
+@Asriel#0284: ?add <@356438792669888513>
+@Asriel#0284: ?add
+@Asriel#0284: ?add <@356438792669888513>
+@Asriel#0284: ?remove <@356438792669888513>
+@Asriel#0284: ?remove <@356438792669888513>
+@Asriel#0284: https://tenor.com/view/adventure-time-stressed-waiting-bmo-gif-5623197
+@Asriel#0284: ?eval 1+1
+@Asriel#0284: ?eval 1+1
+@Asriel#0284: ?eval return 1+1
+@Asriel#0284: ?eval 1+1
+@Asriel#0284: ?eval 1
+@Asriel#0284: ?eval 1
+@Asriel#0284: ?eval 1
+@Asriel#0284: ?eval 1
+@Asriel#0284: ?eval return 1
+@Asriel#0284: ?eval 1+1
+@Asriel#0284: ?eval console.log(1)
+@Asriel#0284: ?eval bot
+@Asriel#0284: ?eval bot.guilds.first()
+@Asriel#0284: ?eval bot.gg()
+@Asriel#0284: ?eval bot.gg
+@Asriel#0284: ?eval 1+1
+@Asriel#0284: ?eval return 1
+@Asriel#0284: ?eval console.log(1)
+@Asriel#0284: ?eval 1
+@Asriel#0284: ?eval console.log(1)
+@Asriel#0284: ?eval return ()
+@Asriel#0284: ?eval (){}()
+@Asriel#0284: ?eval (function(){})()
+@Asriel#0284: ?eval (function(){return 1})()
+@Asriel#0284: ?eval (1+1)
+@Asriel#0284: ?eval 1+1
+@Asriel#0284: ?eval 5
+@Asriel#0284: ?eval 2+2
+@Asriel#0284: ?eval 5+5043+39*29348+293/234
+@Asriel#0284: ?eval bot
+@Asriel#0284: ?eval typeof bot
+@Asriel#0284: ?eval msg
+@Asriel#0284: ?eval msg.author
+@Asriel#0284: ?eval var xx = 2
+@Asriel#0284: ?eval xx
+@Asriel#0284: ?eval dd
+@Asriel#0284: ?eval dd =2
+@Asriel#0284: ?eval dd
+@Asriel#0284: ?eval 2
+@Asriel#0284: ?eval dd = 2
+@Asriel#0284: ?eval dd
+@Asriel#0284: ?eval window
+@Asriel#0284: ?eval dd
+@Asriel#0284: ?eval dd = 2
+@Asriel#0284: ?eval dd =22
+@Asriel#0284: ?eval 1
+@Asriel#0284: ?eval var dd = 2
+@Asriel#0284: ?eval dd
+@Asriel#0284: ?eval var xo = 2 xo
+@Asriel#0284: ?eval var xo = 2; xo
+@Asriel#0284: ?eval msg.channel.send('hi')
+@Asriel#0284: ?eval msg.channel.send('cow'); undefined
+@Asriel#0284: ?eval msg.channel.send('cow'); undefined
+@Asriel#0284: ?eval msg.channel.send('cow'); undefined

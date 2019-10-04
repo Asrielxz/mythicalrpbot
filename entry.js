@@ -29,12 +29,12 @@ var entry = async () => { // Entry function for startup.
         if (typeof onLoad == "function") { // Check if onLoad is a function
             var ret = onLoad(data, settings); // Get return value of onLoad(data, settings)
             if (ret.data) {
-                data = ret.data; // if onLoad(data, settings) returned ret.data set the current data as that.
-                bot.data = data;
+                data = ret.data; // If onLoad(data, settings) returned ret.data set the current data as that.
+                bot.data = data; // Create the reference to the data for the bot object.
             }
             if (ret.settings) {
-                settings = ret.settings; // if onLoad(data, settings) returned ret.settings set the current settings as that.
-                bot.settings = settings;
+                settings = ret.settings; // If onLoad(data, settings) returned ret.settings set the current settings as that.
+                bot.settings = settings; // Create the reference to the settings for the bot object.
             }
         }
     });
@@ -184,15 +184,20 @@ var entry = async () => { // Entry function for startup.
         var d = parseString(message.content); // Parse the command and arguments for the message if it has any.
         var cmd = d.command; // Setup command string from data.
         var args = d.args; // Setup arguments array from data.
-        if (cmd) { // if the command is there continue.
-            if (!message.guild || message.dm) return embedReply(message, "error", ":x: You cannot send commands in a DM.");
+
+        if (message.guild && !message.dm) {
             data.session[message.guild.id] = data.session[message.guild.id] || {}; // Setup session guild.
             message.data = data; // Setup reference to data for message.
             message.settings = settings; // Setup reference to settings for message.
             message.session = data.session[message.guild.id]; // Setup reference to session data for message.
             message.bot = bot; // Setup reference to bot for message.
             message.who = message.author.id; // Setup reference to author id for message.
+        }
 
+        doTicketLogger(message); // Log the message to ticket data if it exists.
+
+        if (cmd) { // if the command is there continue.
+            if (!message.guild || message.dm) return embedReply(message, "error", ":x: You cannot send commands in a DM.");
             var cmds = getCmds(); // Get all the registered commands.
 
             if (cmds[cmd]) { // Check if the command entered is a valid one.

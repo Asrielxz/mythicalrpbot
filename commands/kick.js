@@ -31,10 +31,9 @@ cmd.run = async (bot, msg, args, guild) => {
         reason = "No reason available.";
     }
 
-    await who.kick(reason);
     var e = embed();
     e.setTitle("User Kicked");
-    e.setColor(0xf45042);
+    e.setColor(msg.settings.error_color);
     e.addField("Who", `<@${who.id}>`, true);
     e.addField("By", `<@${msg.author.id}>`, true);
     e.addField("Reason", `\`\`${reason}\`\``, true);
@@ -42,13 +41,14 @@ cmd.run = async (bot, msg, args, guild) => {
     embedReply(msg, "success", `:door: <@${who.id}> has been kicked.`).then(m => m.delete(4000));
     var ue = embed();
     ue.setTitle("You have been kicked");
-    ue.setColor(0xf45042);
+    ue.setColor(msg.settings.error_color);
     ue.addField("Server", `\`\`${guild.name}\`\``, true);
     ue.addField("By", `<@${msg.author.id}>`, true);
     ue.addField("Reason", `\`\`${reason}\`\``, true);
 
     who.send(ue).catch(err => log("error", `Failed to DM user: ${err}`));
 
+    await who.kick(reason);
     modLog(msg, e);
 }
 

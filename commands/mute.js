@@ -61,7 +61,7 @@ cmd.run = async (bot, msg, args, guild) => {
     });
     var e = embed();
     e.setTitle("User Muted");
-    e.setColor(0xf45042);
+    e.setColor(msg.settings.error_color);
     e.addField("Who", `<@${who.id}>`, true);
     e.addField("By", `<@${msg.author.id}>`, true);
     e.addField("Duration", `\`\`${str}\`\``, true);
@@ -80,7 +80,7 @@ cmd.run = async (bot, msg, args, guild) => {
         who.addRole(r, `MUTE: ${reason} (@${msg.author.name}#${msg.author.discriminator}) for (${str})`);
         var ue = embed();
         ue.setTitle("You have been muted");
-        ue.setColor(0xf45042);
+        ue.setColor(msg.settings.error_color);
         ue.addField("Server", `\`\`${guild.name}\`\``, true);
         ue.addField("By", `<@${msg.author.id}>`, true);
         ue.addField("Duration", `\`\`${str}\`\``, true);

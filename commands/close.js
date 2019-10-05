@@ -78,7 +78,7 @@ cmd.run = async (bot, msg, args, guild) => {
 
     var e = embed();
     e.setTitle("Ticket Closed");
-    e.setColor(0xf45042);
+    e.setColor(msg.settings.error_color);
     e.addField("Who", `<@${ticketData.user}>`, true);
     e.addField("By", `<@${msg.author.id}>`, true);
     e.addField("Reason", `\`\`${reason}\`\``, true);
@@ -97,16 +97,18 @@ cmd.run = async (bot, msg, args, guild) => {
             files: [
                 logFile
             ]
-        }).catch(e => {});
+        }).catch(e => {}).then(_ => {
+            setTimeout(() => {
+                clearLog(msg.author);
+            }, 2000);
+        })
     }
 
-    modLog(msg, e);
+    ticketLog(msg, e);
 
     if (msg.channel.id !== ticketData.channel && !msg.channel.deleted) {
         embedReply(msg, "success", ":white_check_mark: The ticket has been closed successfully.").then(m=>m.delete(3000));
     }
-
-    await clearLog(msg.author);
 }
 
 module.exports = cmd;

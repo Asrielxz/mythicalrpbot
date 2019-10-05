@@ -56,7 +56,7 @@ var entry = async () => { // Entry function for startup.
                             member.removeRole(role, "[AUTO] Mute expired.");
                             var ue = embed();
                             ue.setTitle("You have been unmuted");
-                            ue.setColor(0x42f45f);
+                            ue.setColor(settings.success_color);
                             ue.addField("Server", `\`\`${guild.name}\`\``, true);
                             ue.addField("By", `<@${bot.user.id}>`, true);
                             ue.addField("Reason", `\`\`[AUTO] Mute expired.\`\``, true);
@@ -65,7 +65,7 @@ var entry = async () => { // Entry function for startup.
                             if (c) {
                                 ue = embed();
                                 ue.setTitle("User Unmuted");
-                                ue.setColor(0x42f45f);
+                                ue.setColor(settings.success_color);
                                 ue.addField("Who", `<@${member.id}>`, true);
                                 ue.addField("By", `<@${bot.user.id}>`, true);
                                 ue.addField("Reason", `\`\`[AUTO] Mute expired.\`\``, true);
@@ -110,7 +110,7 @@ var entry = async () => { // Entry function for startup.
                         if (c) {
                             ue = embed();
                             ue.setTitle("User Unbanned");
-                            ue.setColor(0x42f45f);
+                            ue.setColor(settings.success_color);
                             ue.addField("Who", `<@${user}>`, true);
                             ue.addField("By", `<@${bot.user.id}>`, true);
                             ue.addField("Ban Reason", `\`\`${why}\`\``, true);
@@ -153,7 +153,9 @@ var entry = async () => { // Entry function for startup.
                         if (chan) {
                             fetchMessageDetour(chan, dat.status.messageID, async (m) => {
                                 var fake = {
-                                    session: dat
+                                    session: dat,
+                                    settings: settings,
+                                    guild: guild
                                 }
 
                                 var embed = await embedServerList(fake);
@@ -168,10 +170,59 @@ var entry = async () => { // Entry function for startup.
                                 }
                             });
                         } else {
-                            delete data.session[srv];
+                            delete data.session[srv].status;
                             data.session = cleanArray(data.session);
                             saveData();
                             log("error", "Could not find channel for status thinker. " + guild.name);
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    thinkAdd("staff_think", async () => {
+        for (var srv in data.session) {
+            var dat = data.session[srv];
+
+            if (dat.stafflist && dat.stafflist.channelID && dat.stafflist.messageID) {
+                var guild = bot.guilds.find(g => g.id == srv);
+
+                if (guild) {
+                    if (!dat.stafflist.cooldown) {
+                        dat.stafflist.cooldown = 60;
+                        saveData();
+                    }
+                    dat.stafflist.cooldown--;
+                    saveData();
+                    if (dat.stafflist.cooldown <= 0) {
+                        dat.stafflist.cooldown = undefined;
+                        var chan = guild.channels.find(c => c.id == dat.stafflist.channelID);
+
+                        if (chan) {
+                            fetchMessageDetour(chan, dat.stafflist.messageID, async (m) => {
+                                var fake = {
+                                    session: dat,
+                                    settings: settings,
+                                    guild: guild
+                                }
+
+                                var embed = await embedStaffList(fake);
+
+                                if (m) {
+                                    m.edit(embed);
+                                } else {
+                                    chan.send(embed).then(m => {
+                                        dat.stafflist.messageID = m.id;
+                                        saveData();
+                                    })
+                                }
+                            });
+                        } else {
+                            delete data.session[srv].stafflist;
+                            data.session = cleanArray(data.session);
+                            saveData();
+                            log("error", "Could not find channel for stafflist thinker. " + guild.name);
                         }
                     }
                 }

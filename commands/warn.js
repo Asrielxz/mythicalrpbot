@@ -48,7 +48,7 @@ cmd.run = async (bot, msg, args, guild) => {
 
     var e = embed();
     e.setTitle("User Warned");
-    e.setColor(0xf45042);
+    e.setColor(msg.settings.error_color);
     e.addField("Who", `<@${who.id}>`, true);
     e.addField("Reason", `\`\`${reason}\`\``, true);
     e.addField("By", `<@${msg.author.id}>`, true);
@@ -58,7 +58,7 @@ cmd.run = async (bot, msg, args, guild) => {
 
         var ue = embed();
         ue.setTitle("You have been warned");
-        ue.setColor(0xf45042);
+        ue.setColor(msg.settings.error_color);
         ue.addField("Server", `\`\`${guild.name}\`\``, true);
         ue.addField("Reason", `\`\`${reason}\`\``, true);
         ue.addField("By", `<@${msg.author.id}>`, true);

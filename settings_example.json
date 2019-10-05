@@ -1,10 +1,12 @@
 {
-  "token": "client_token",
+  "token": "<token>",
   "comment": "This is the token used for the bot.",
   "prefix": "?",
   "comment": "This is the prefix the bot should use.",
   "mod_log": "mod-log",
   "comment": "The channel for all moderator actions to go to.",
+  "ticket_log": "ticket-log",
+  "comment": "The channel for all ticket actions to go to.",
   "ticket_category": "support-tickets",
   "comment": "The channel name for the support tickets to go in.",
   "ticket_channel": "tickets",
@@ -15,7 +17,7 @@
     "support": "Support",
     "mod": "Mod",
     "admin": "Admin",
-    "superadmin": "SuperAdmin",
+    "superadmin": "Super Admin",
     "owner": "Owner"
   },
   "comment": "The roles for the bot to use and commands.",
@@ -24,5 +26,11 @@
   "rules_header": "Anyone found breaking these rules will be punished accordingly. Consider this your only warning.",
   "comment": "The header of the rules embed to show.",
   "applications_header": "If you wish to apply for a whitelisted job on the server you can use the applications below.",
-  "comment": "The header of the applications embed to show."
+  "comment": "The header of the applications embed to show.",
+  "success_color": "0x77fab6",
+  "comment": "The color to use for success color embeds.",
+  "error_color": "0xfa777a",
+  "comment": "The color to use for error color embeds.",
+  "info_color": "0x77bbfa",
+  "comment": "The color to use for error color embeds."
 }

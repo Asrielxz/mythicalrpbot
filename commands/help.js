@@ -19,7 +19,7 @@ cmd.run = async (bot, msg, args, guild) => {
     }
 
     var e = embed();
-    e.setColor(0x42a4f4);
+    e.setColor(msg.settings.info_color);
     var t = Date.now() + 5000;
 
     if (scope) {

@@ -84,7 +84,7 @@ cmd.run = async (bot, msg, args, guild) => {
 
     var e = embed();
     e.setTitle("User Added To Ticket");
-    e.setColor(0xf45042);
+    e.setColor(msg.settings.success_color);
     e.addField("Ticket", `<#${ticketData.channel}>`, true);
     e.addField("Ticket Owner", `<@${ticketData.user}>`, true);
     e.addField("User", `<@${user.id}>`, true);
@@ -92,7 +92,7 @@ cmd.run = async (bot, msg, args, guild) => {
     e.addField("Reason", `\`\`${reason}\`\``, true);
     e.addField("When", `\`\`${when}\`\``, true);
 
-    modLog(msg, e);
+    ticketLog(msg, e);
 
     // if (msg.channel.id !== ticketData.channel && !msg.channel.deleted) {
         embedReply(msg, "success", ":white_check_mark: <@" + user.id + "> Has been added to the ticket.").then(m=>m.delete(3000));

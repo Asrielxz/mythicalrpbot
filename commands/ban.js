@@ -62,10 +62,9 @@ cmd.run = async (bot, msg, args, guild) => {
             return log("error", `Failed to ban user ${who.id}, reason: ${e}`);
         });
     }
-    await who.ban({ days: 7, reason: reason });
     var e = embed();
     e.setTitle("User Banned");
-    e.setColor(0xf45042);
+    e.setColor(msg.settings.error_color);
     e.addField("Who", `<@${who.id}>`, true);
     e.addField("By", `<@${msg.author.id}>`, true);
     e.addField("Duration", `\`\`${str}\`\``, true);
@@ -74,7 +73,7 @@ cmd.run = async (bot, msg, args, guild) => {
     embedReply(msg, "success", `:hammer: <@${who.id}> has been banned.`).then(m => m.delete(4000));
     var ue = embed();
     ue.setTitle("You have been banned");
-    ue.setColor(0xf45042);
+    ue.setColor(msg.settings.error_color);
     ue.addField("Server", `\`\`${guild.name}\`\``, true);
     ue.addField("By", `<@${msg.author.id}>`, true);
     ue.addField("Duration", `\`\`${str}\`\``, true);
@@ -82,6 +81,7 @@ cmd.run = async (bot, msg, args, guild) => {
 
     who.send(ue).catch(err => log("error", `Failed to DM user: ${err}`));
 
+    await who.ban({ days: 7, reason: reason });
     modLog(msg, e);
 }
 

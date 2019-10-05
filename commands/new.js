@@ -80,7 +80,7 @@ cmd.run = async (bot, msg, args, guild) => {
 
     var e = embed();
     e.setTitle("New Ticket Opened");
-    e.setColor(0xf45042);
+    e.setColor(msg.settings.info_color);
      e.addField("Ticket", `<#${ticket.id}>`, true);
     e.addField("Who", `<@${msg.author.id}>`, true);
     e.addField("Topic", `\`\`${topic}\`\``, true);
@@ -90,13 +90,13 @@ cmd.run = async (bot, msg, args, guild) => {
 
     var ue = embed();
     ue.setTitle("Ticket Information");
-    ue.setColor(0xf45042);
+    ue.setColor(msg.settings.info_color);
     ue.addField("Topic", "``" + topic + "``", true);
     ue.addField("Opened By", "<@" + msg.author.id + ">", true);
     ue.addField("Opened On", "``" + when + "``", true);
     ticket.send(ue);
 
-    modLog(msg, e);
+    ticketLog(msg, e);
 }
 
 module.exports = cmd;

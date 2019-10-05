@@ -53,7 +53,7 @@ cmd.run = async (bot, msg, args, guild) => {
 
         var e = embed();
         e.setTitle("User Unbanned");
-        e.setColor(0xf45042);
+        e.setColor(msg.settings.success_color);
         e.addField("Who", `<@${who}>`, true);
         e.addField("By", `<@${msg.author.id}>`, true);
         e.addField("Ban Reason", `\`\`${rb.reason}\`\``, true);

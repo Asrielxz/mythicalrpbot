@@ -26,11 +26,11 @@ cmd.run = async (bot, msg, args, guild) => {
         title = "Server Annoucement";
     }
 
-    title = title.replace("-", " ");
+    title = title.split("-").join(" ");
 
     var e = embed();
     e.setTitle(title);
-    e.setColor(0xb342f5);
+    e.setColor(msg.settings.info_color);
     e.setDescription(str);
     msg.channel.send(e);
 }

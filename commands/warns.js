@@ -30,13 +30,13 @@ cmd.run = async (bot, msg, args, guild) => {
             return embedReply(msg, "error", ":x: This person has no warnings.");
         } else {
             var e = embed();
-            e.setColor(0xf45042);
+            e.setColor(msg.settings.error_color);
             e.setTitle("Their Warnings");
             e.setTimestamp();
 
             for (var i = 0; i < warns.length; i++) {
                 var e = embed();
-                e.setColor(0xf45042);
+                e.setColor(msg.settings.error_color);
                 e.setTitle("Their Warnings");
                 e.setTimestamp();
 
@@ -62,7 +62,7 @@ cmd.run = async (bot, msg, args, guild) => {
             for (var i = 0; i < warns.length; i++) {
                 if (dobreak) break;
                 var e = embed();
-                e.setColor(0xf45042);
+                e.setColor(msg.settings.error_color);
                 e.setTitle("Your Warnings");
                 e.setTimestamp();
 
